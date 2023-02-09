@@ -12,7 +12,7 @@ const artController = require("./controllers/artController");
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use("/art", artController);
+app.use("/gallery", artController);
 
 // ROUTES
 app.get("/", (req, res) => {

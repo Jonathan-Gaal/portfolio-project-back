@@ -7,25 +7,25 @@ const {
   createArtwork,
   deleteArtwork,
   updateArtwork,
-} = require("../queries/artwork");
+} = require("../queries/gallery");
 
 const commentsController = require("./commentsController");
 gallery.use("/:artId/comments", commentsController);
 
 // INDEX/GALLERY
 gallery.get("/", async (req, res) => {
-  const allArtWork = await getAllArtwork();
+  const allArtwork = await getAllArtwork();
   if (allArtwork[0]) {
     res.status(200).json(allArtwork);
   } else {
-    res.status(500).json({ error: allArtWork.message });
+    res.status(500).json({ error: allArtwork.message });
   }
 });
 
 // GET ONE ARTWORK
 gallery.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const song = await getOneArtwork(id);
+  const artwork = await getOneArtwork(id);
   if (!artwork.message) {
     res.json(artwork);
   } else {

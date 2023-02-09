@@ -3,6 +3,9 @@ CREATE DATABASE jonsArt_dev;
 
 \c jonsArt_dev
 
+
+DROP TABLE IF EXISTS gallery;
+
 CREATE TABLE gallery (
     id SERIAL PRIMARY KEY,
     title TEXT,
@@ -11,10 +14,10 @@ CREATE TABLE gallery (
     category VARCHAR(100),
     post_date DATE,
     image TEXT,
-    length_inches INT,
-    width_inches INT,
-    height_inches INT,
-    depth_inches INT
+    length_inches NUMERIC(10,1),
+    width_inches NUMERIC(10,1),
+    height_inches NUMERIC(10,1),
+    depth_inches NUMERIC(10,1)
 );
 
 DROP TABLE IF EXISTS comments;
