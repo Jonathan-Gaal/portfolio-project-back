@@ -14,10 +14,10 @@ CREATE TABLE gallery (
     category VARCHAR(100),
     post_date VARCHAR(10),
     image TEXT,
-    diameter_inches TEXT,
-    width_inches TEXT,
-    height_inches TEXT,
-    depth_inches TEXT
+    diameter TEXT,
+    width TEXT,
+    height TEXT,
+    depth TEXT
 );
 
 DROP TABLE IF EXISTS comments;
