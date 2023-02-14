@@ -21,7 +21,7 @@ const getOneArtwork = async (id) => {
 const createArtwork = async (artwork) => {
   try {
     const newArtwork = await db.one(
-      "INSERT INTO gallery (title, materials, description, category, post_date, image, length_inches, width_inches, height_inches, depth_inches) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10 ) RETURNING *",
+      "INSERT INTO gallery (title, materials, description, category, post_date, image, diameter_inches, width_inches, height_inches, depth_inches) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10 ) RETURNING *",
       [
         artwork.title,
         artwork.materials,
@@ -56,7 +56,7 @@ const deleteArtwork = async (id) => {
 const updateArtwork = async (id, artwork) => {
   try {
     const updatedArtwork = await db.one(
-      "UPDATE gallery SET title=$1, materials=$2, description=$3, category=$4, post_date=$5, image=$6, length_inches=$7, width_inches=$8, height_inches=$9, depth_inches=$10 WHERE id=$11 RETURNING *",
+      "UPDATE gallery SET title=$1, materials=$2, description=$3, category=$4, post_date=$5, image=$6, diameter_inches=$7, width_inches=$8, height_inches=$9, depth_inches=$10 WHERE id=$11 RETURNING *",
       [
         artwork.title,
         artwork.materials,
