@@ -3,7 +3,7 @@ CREATE DATABASE jonsArt_dev;
 
 \c jonsArt_dev
 
-
+DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS gallery;
 
 CREATE TABLE gallery (
@@ -12,12 +12,12 @@ CREATE TABLE gallery (
     materials TEXT,
     description TEXT,
     category VARCHAR(100),
-    post_date DATE,
+    post_date VARCHAR(10),
     image TEXT,
-    length_inches NUMERIC(10,1),
-    width_inches NUMERIC(10,1),
-    height_inches NUMERIC(10,1),
-    depth_inches NUMERIC(10,1)
+    diameter_inches TEXT,
+    width_inches TEXT,
+    height_inches TEXT,
+    depth_inches TEXT
 );
 
 DROP TABLE IF EXISTS comments;
@@ -26,7 +26,7 @@ CREATE TABLE comments (
  id SERIAL PRIMARY KEY,
  commenter VARCHAR(100),
  comment TEXT,
- post_date DATE,
+ post_date VARCHAR(10),
  art_id INTEGER REFERENCES gallery (id)
  ON DELETE CASCADE
 );
