@@ -21,6 +21,8 @@ CREATE TABLE gallery (
     depth TEXT
 );
 
+-- TODO: create images table here
+
 --TODO: remove this statement if it works without it
 -- DROP TABLE IF EXISTS comments;
 
@@ -30,6 +32,11 @@ CREATE TABLE gallery (
 --  user_lastName VARCHAR(100),
 --  user_email VARCHAR(100),
 --  user_passWord VARCHAR(100),
+--  user_phone VARCHAR(10)
+--  user_adress_street VARCHAR(100)
+--  user_adress_city VARCHAR(60)
+--  user_adress_state VARCHAR(2)
+--  user_adress_zip VARCHAR(5)
 -- );
 
 CREATE TABLE comments (
@@ -37,8 +44,8 @@ CREATE TABLE comments (
  commenter VARCHAR(100),
  comment TEXT,
  post_date VARCHAR(10),
- art_id INTEGER REFERENCES gallery (id)
- user_id INTEGER REFERENCES users (user_id)
+ art_id INTEGER REFERENCES gallery (id),
+--  user_id INTEGER REFERENCES users (user_id)
  ON DELETE CASCADE
 );
 

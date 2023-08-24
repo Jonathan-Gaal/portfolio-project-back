@@ -1,13 +1,23 @@
 const pgp = require("pg-promise")();
 require("dotenv").config();
 
-const cn = {
-  host: process.env.PG_HOST,
-  port: process.env.PG_PORT,
-  database: process.env.PG_DATABASE,
-  user: process.env.PG_USER,
-  password: process.env.PG_PASSWORD,
-};
+const databseUrl = process.env.PROD_DB;
+
+const cn = {};
+
+if (process.env.NODE_ENV === "production") {
+  cn = {
+    connectionString: dabaseUrl,
+  };
+} else {
+  cn = {
+    host: process.env.PG_HOST,
+    port: process.env.PG_PORT,
+    database: process.env.PG_DATABASE,
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+  };
+}
 
 const db = pgp(cn);
 
