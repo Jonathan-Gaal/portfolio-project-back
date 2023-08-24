@@ -1,13 +1,13 @@
 const pgp = require("pg-promise")();
 require("dotenv").config();
 
-const databseUrl = process.env.PROD_DB;
+const databaseUrl = process.env.PROD_DB;
 
 const cn = {};
 
 if (process.env.NODE_ENV === "production") {
   cn = {
-    connectionString: dabaseUrl,
+    connectionString: databaseUrl,
   };
 } else {
   cn = {
