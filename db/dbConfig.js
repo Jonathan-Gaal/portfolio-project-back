@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const databaseUrl = process.env.PROD_DB;
 
-const cn = {};
+let cn = {};
 
 if (process.env.NODE_ENV === "production") {
   cn = {
