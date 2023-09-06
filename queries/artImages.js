@@ -43,7 +43,6 @@ const deleteSingleArtResourceImage = async (imageIdFromParams) => {
       "DELETE FROM galleryArtImages WHERE image_id=$1 RETURNING *",
       imageIdFromParams
     );
-    console.log("deleted resource", deleteSingleArtResourceImage);
     return deletedSingleArtResourceImage;
   } catch (err) {
     return err;

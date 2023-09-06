@@ -40,12 +40,17 @@ CREATE TABLE galleryArtImages (
 --  user_lastName VARCHAR(100),
 --  user_email VARCHAR(100),
 --  user_passWord VARCHAR(100),
---  user_phone VARCHAR(10)
+-- );
+
+-- CREATE TABLE usersAdresses (
+--  userAddressOption_id SERIAL PRIMARY KEY,
 --  user_adress_street VARCHAR(100)
 --  user_adress_city VARCHAR(60)
 --  user_adress_state VARCHAR(2)
 --  user_adress_zip VARCHAR(5)
 -- );
+
+
 
 CREATE TABLE comments (
  id SERIAL PRIMARY KEY,
@@ -57,14 +62,8 @@ CREATE TABLE comments (
 
 );
 
--- CREATE TABLE userPaymentMethods (
---  paymentMethod_id SERIAL PRIMARY KEY,
--- creditCard_number VARCHAR(16)
--- creditCard_expireDate VARCHAR(4)
--- creditCard_securityCode VARCHAR(4)
--- user_id INTEGER REFERENCES users (user_id)
---  ON DELETE CASCADE
--- );
+-- CREATE TABLE userPaymentMethods 
+-- LOOK AT INTEGRATING STRIPE!!!
 
 
 -- CREATE TABLE shoppingCart (
