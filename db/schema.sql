@@ -4,7 +4,9 @@ CREATE DATABASE jonsArt_dev;
 \c jonsArt_dev
 
 DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS galleryArtImages;
 DROP TABLE IF EXISTS gallery;
+
 -- DROP TABLE IF EXISTS shoppingCart;
 
 CREATE TABLE gallery (
@@ -21,7 +23,13 @@ CREATE TABLE gallery (
     depth TEXT
 );
 
--- TODO: create images table here
+CREATE TABLE galleryArtImages (
+ image_id SERIAL PRIMARY KEY,
+ image_url TEXT,
+ art_id INTEGER,
+ FOREIGN KEY (art_id) REFERENCES gallery (id) ON DELETE CASCADE
+);
+
 
 --TODO: remove this statement if it works without it
 -- DROP TABLE IF EXISTS comments;
@@ -44,9 +52,9 @@ CREATE TABLE comments (
  commenter VARCHAR(100),
  comment TEXT,
  post_date VARCHAR(10),
- art_id INTEGER REFERENCES gallery (id),
+ art_id INTEGER REFERENCES gallery (id)  ON DELETE CASCADE
 --  user_id INTEGER REFERENCES users (user_id)
- ON DELETE CASCADE
+
 );
 
 -- CREATE TABLE userPaymentMethods (

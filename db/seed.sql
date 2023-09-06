@@ -26,3 +26,7 @@ VALUES ('Moroccan Hanging Lantern', 'nickel plated trays, cotton strands from do
 INSERT INTO comments (art_id, commenter, comment, post_date )
 VALUES
 ('1', 'Jon', 'This piece rox beyond belief!', '02-08-2023');
+
+INSERT INTO galleryArtImages (image_url, art_id)
+VALUES
+('https://res.cloudinary.com/dkedfonvh/image/upload/v1676571233/frontend-portfolio-project-images/artworks/D4B43263-D1F8-4D0D-92A0-1DC085436BED_oi1px7.jpg', '1');

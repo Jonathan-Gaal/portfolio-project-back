@@ -12,6 +12,9 @@ const {
 const commentsController = require("./commentsController");
 gallery.use("/:artId/comments", commentsController);
 
+const artImagesController = require("./artImagesController");
+gallery.use("/:artId/artImages", artImagesController);
+
 // INDEX/GALLERY
 gallery.get("/", async (req, res) => {
   const allArtwork = await getAllArtwork();

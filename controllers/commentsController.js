@@ -11,6 +11,7 @@ const {
 //INDEX
 comments.get("/", async (req, res) => {
   const { artId } = req.params;
+
   try {
     const allComments = await getAllComments(artId);
     res.status(200).json(allComments);
@@ -19,6 +20,7 @@ comments.get("/", async (req, res) => {
   }
 });
 
+//SHOW
 comments.get("/:id", async (req, res) => {
   const { id } = req.params;
   const comment = await getComment(id);
@@ -29,15 +31,29 @@ comments.get("/:id", async (req, res) => {
   }
 });
 
+//CREATE
 comments.post("/", async (req, res) => {
+  const newCommentBody = req.body;
   try {
-    const comment = await createComment(req.body);
+    const comment = await createComment(newCommentBody);
     res.status(200).json(comment);
   } catch (err) {
     res.status(500).json({ error: comment.message });
   }
 });
 
+//UPDATE
+comments.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedComment = await updateComment(id, req.body);
+    res.status(200).json(updatedComment);
+  } catch (error) {
+    res.status(400).json({ error: updatedComment.message });
+  }
+});
+
+//DELETE
 comments.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -46,17 +62,7 @@ comments.delete("/:id", async (req, res) => {
       res.status(200).json(deletedComment);
     }
   } catch (err) {
-    res.status(404).json({ error: deleteComment.message });
-  }
-});
-
-comments.put("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const updatedComment = await updateComment(id, req.body);
-    res.status(200).json(updatedComment);
-  } catch (error) {
-    res.status(400).json({ error: updatedComment.message });
+    res.status(404).json({ error: deletedComment.message });
   }
 });
 
