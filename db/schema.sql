@@ -70,14 +70,15 @@ CREATE TABLE users (
     )
 );
 
--- CREATE TABLE userAdresses (
---  user_address_id SERIAL PRIMARY KEY,
---  user_id 
---  user_adress_street VARCHAR(100)
---  user_adress_city VARCHAR(60)
---  user_adress_state VARCHAR(2)
---  user_adress_zip VARCHAR(5)
--- );
+CREATE TABLE userAdresses (
+ user_address_id SERIAL PRIMARY KEY,
+ user_id INTEGER 
+ FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
+ user_adress_street VARCHAR(100)
+ user_adress_city VARCHAR(60)
+ user_adress_state VARCHAR(2)
+ user_adress_zip VARCHAR(5)
+);
 
 -- CREATE TABLE userShoppingCart (
 --  shoppingCart_id SERIAL PRIMARY KEY,

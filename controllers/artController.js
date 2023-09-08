@@ -59,7 +59,8 @@ gallery.delete("/:id", async (req, res) => {
 gallery.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedArtwork = await updateArtwork(id, req.body);
+    const updatedArtworkNewData = req.body;
+    const updatedArtwork = await updateArtwork(id, updatedArtworkNewData);
     res.status(200).json(updatedArtwork);
   } catch (err) {
     res.status(404).json({ error: updateArtwork.message });

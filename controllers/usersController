@@ -5,6 +5,7 @@ const {
   getOneUser,
   createNewUser,
   deleteOneUser,
+  editAllExistingUserData,
 } = require("../queries/users");
 
 users.get("/", async (req, res) => {
@@ -33,6 +34,20 @@ users.post("/", async (req, res) => {
     res.status(200).json(newUserData);
   } catch (err) {
     res.status(400).json({ error: newUser.message });
+  }
+});
+
+users.put("/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const updatedUserNewData = req.body;
+    const editedUser = await editAllExistingUserData(
+      userId,
+      updatedUserNewData
+    );
+    res.status(200).json(editedUser);
+  } catch (err) {
+    res.status(500).json({ error: editedUser.message });
   }
 });
 

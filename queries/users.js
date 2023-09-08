@@ -38,6 +38,24 @@ const createNewUser = async (newUserInfo) => {
   }
 };
 
+const editAllExistingUserData = async (userId, updatedUserNewData) => {
+  try {
+    const updatedUser = await db.one(
+      "UPDATE users SET user_firstName=$1, user_lastName=$2, user_email=$3, user_password=$4 WHERE user_id=$5 RETURNING *",
+      [
+        updatedUserNewData.user_firstName,
+        updatedUserNewData.user_lastName,
+        updatedUserNewData.user_email,
+        updatedUserNewData.user_password,
+        userId,
+      ]
+    );
+    return updatedUser;
+  } catch (err) {
+    return err;
+  }
+};
+
 const deleteOneUser = async (userId) => {
   try {
     const deletedUser = await db.one(
@@ -55,4 +73,5 @@ module.exports = {
   getOneUser,
   createNewUser,
   deleteOneUser,
+  editAllExistingUserData,
 };
