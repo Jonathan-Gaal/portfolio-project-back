@@ -11,7 +11,7 @@ const getAllArtwork = async () => {
 
 const getOneArtwork = async (id) => {
   try {
-    const oneArtwork = await db.one("SELECT * FROM gallery WHERE ID=$1", id);
+    const oneArtwork = await db.one("SELECT * FROM gallery WHERE id=$1", id);
     return oneArtwork;
   } catch (err) {
     return err;

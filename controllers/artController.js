@@ -1,5 +1,4 @@
 const express = require("express");
-const { all } = require("../app");
 const gallery = express.Router();
 const {
   getAllArtwork,

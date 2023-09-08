@@ -1,0 +1,36 @@
+const express = require("express");
+const users = express.Router();
+const { getAllUsers, getOneUser, createNewUser } = require("../queries/users");
+
+users.get("/", async (req, res) => {
+  try {
+    const allUsers = await getAllUsers();
+    res.status(200).json(allUsers);
+  } catch (err) {
+    res.status(500).json({ error: allUsers.message });
+  }
+});
+
+users.get("/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const oneUser = await getOneUser(userId);
+    res.json(oneUser);
+  } catch (err) {
+    res.status(500).json({ error: oneUser.message });
+  }
+});
+
+users.post("/", async (req, res) => {
+  try {
+    const newUserData = req.body;
+    const newUser = await createNewUser(newUserData);
+    res.status(200).json(newUserData);
+  } catch (err) {
+    res.status(400).json({ error: newUser.message });
+  }
+});
+
+// TODO: CREATE A DELETE FUNCTION HERE
+
+module.exports = users;

@@ -1,10 +1,10 @@
 \c jonsArt_dev;
 
--- ('NAME.', 'MATERIALS.', 'DESC.', 'CATEGORY.', 'POST DATE. E.G. 08-12-2022 ', 'URL.', 'DIAMETER. E.G. 15 in. or N/A', 'WIDTH. E.G.10 in. or N/A', 'HEIGHT. E.G. 30 in. or N/A', 'DEPTH. E.G. 15 in. or N/A' ),
+-- TEMPLATE FOR GALLERY ('NAME.', 'MATERIALS.', 'DESC.', 'CATEGORY.', 'POST DATE. E.G. 08-12-2022 ', 'URL.', 'DIAMETER. E.G. 15 in. or N/A', 'WIDTH. E.G.10 in. or N/A', 'HEIGHT. E.G. 30 in. or N/A', 'DEPTH. E.G. 15 in. or N/A' ),
 
 INSERT INTO gallery (title, materials, description, category, post_date, image, diameter, width, height, depth) 
 
-VALUES ('Moroccan Hanging Lantern', 'nickel plated trays, cotton strands from dog-toys (for tassels), paracord, wooden frame from discarded japanese lantern, yarn, plastic crystals from discarded candelabrum, assorted lamp parts, premade tassels, brass bell', 'I made this piece from 8 nickel plated trays I got for $1 per at dollar tree. I used an awl to punch out the patterns and screwed the trays to a wooden frame I liberated from a box shaped japanese shoji lantern style lamp that I found discarded in the trash one fine day. The large tassels hanging on each of the 4 corners are made from untwisted dog toys, again from dollar tree, and hang on a string made from red patterned paracord. Another great feature is that the power cord is completely covered in yarn masking the fact that this is an electric lamp. I love the touch that there is a long pull-chain that has a small brass bell on the end that rings whenever you pull on or off.  ', 'Lighting', '09-12-2021', 'https://res.cloudinary.com/dkedfonvh/image/upload/v1676571233/frontend-portfolio-project-images/artworks/D4B43263-D1F8-4D0D-92A0-1DC085436BED_oi1px7.jpg', 'N/A', '11.5 in.', '30 in.', '11.5 in.' ),
+VALUES ('Moroccan Hanging Lantern', 'nickel plated trays, cotton strands from dog-toys (for tassels), paracord, wooden frame from discarded japanese lantern, yarn, plastic crystals from discarded candelabrum, assorted lamp parts, premade tassels, brass bell', 'I made this piece from 8 nickel plated trays I got for $1 per at dollar tree. I used an awl to punch out the patterns and screwed the trays to a wooden frame I liberated from a box shaped japanese shoji lantern style lamp that I found discarded in the trash one fine day. The large tassels hanging on each of the 4 corners are made from untwisted dog toys, again from dollar tree, and hang on a string made from red patterned paracord. Another great feature is that the power cord is completely covered in yarn masking the fact that this is an electric lamp. I love the touch that there is a long pull-chain that has a small brass bell on the end that rings whenever you pull on or off.  ', 'Lighting', '09-12-2021', 'https://res.cloudinary.com/dkedfonvh/image/upload/v1676571233/frontend-portfolio-project-images/artworks/moroccan_hanging_lantern_1/D4B43263-D1F8-4D0D-92A0-1DC085436BED_oi1px7.jpg', 'N/A', '11.5 in.', '30 in.', '11.5 in.' ),
 
 ('Moroccan Hanging Lantern 2', 'round brass lampshade, brass chains, random round brass piece reclaimed from a Manhattan street, 2 brass pieces, lamp parts, costume jewelery, premade tassels', 'I made this hanging lamp from a round brass lampshade I got off a lamp I bought off Facebook Marketplace for $15-- which I purchased just for the shade. I even sold the lamp with another shade on Craigslist for what I paid! The bottom round section is made from a random brass piece I found on the street in Manhattan. It is fixed to the lampshade upper section via brass plated chains from costume jewelery. There is an ornamental cross piece on the bottom that I made from 2 random brass pieces screed onto the bottom section. Adorned with colored tassels and costume jewelery bracelets. One of my brighter lamps. Really lights up my life.', 'Lighting', '10-12-2022', 'https://res.cloudinary.com/dkedfonvh/image/upload/v1676647137/frontend-portfolio-project-images/artworks/C80446F7-8670-4E29-924B-6E393DA36127_1_105_c_lgzg6x.jpg', '13 in.', '30 in.', 'N/A', 'N/A' ),
 
@@ -22,11 +22,27 @@ VALUES ('Moroccan Hanging Lantern', 'nickel plated trays, cotton strands from do
 
 ('Turkish Shoulder Bag', 'black woolen handmade flat-woven cloth cut from a larger rug, acrylic yarn, brass chinese coins from Amazon ', 'A great Shoulder bag that can be used with a strap or hung on a wall for storage of random items, which is what I use it for. I store yarn and fabric in it. I had a large Turkish embroidered rug (known as Mersin) from Etsy, and it had a heavily embroidered central square portion and two sides that were without much embroidery. I decided to cut off the two sides and have a square rug instead. This bag was made with one of those cut off panels. I simply folded it over and sewed the sides with yarn and added various pom-poms, and the Chinese brass coins for interest. I added a bit of embroidery down the center. A lovely little project!', 'Clothing & Accessories', '10-12-2021', 'https://res.cloudinary.com/dkedfonvh/image/upload/v1690426239/frontend-portfolio-project-images/artworks/65575583518__6A3456AE-34C0-4EC6-9BB9-71EF911A288A_swnpdp.jpg', 'N/A', '16 in.', '18 in.', 'N/A' );
 
+-- TEMPLATE FOR COMMENTS ('ART_ID', 'COMMENTER', 'COMMENT', 'POST_DATE')
 
 INSERT INTO comments (art_id, commenter, comment, post_date )
 VALUES
 ('1', 'Jon', 'This piece rox beyond belief!', '02-08-2023');
 
-INSERT INTO galleryArtImages (image_url, art_id)
+--TEMPLATE FOR GALLERYARTIMAGES ('IMAGE_URL', 'IMAGE_CAPTION', 'ART_ID')
+
+INSERT INTO galleryArtImages (image_url, image_caption, art_id)
 VALUES
-('https://res.cloudinary.com/dkedfonvh/image/upload/v1676571233/frontend-portfolio-project-images/artworks/D4B43263-D1F8-4D0D-92A0-1DC085436BED_oi1px7.jpg', '1');
+('https://res.cloudinary.com/dkedfonvh/image/upload/v1676571233/frontend-portfolio-project-images/artworks/moroccan_hanging_lantern_1/D4B43263-D1F8-4D0D-92A0-1DC085436BED_oi1px7.jpg', 'Closeup of lantern.', '1'),
+
+('https://res.cloudinary.com/dkedfonvh/image/upload/v1694035459/frontend-portfolio-project-images/artworks/moroccan_hanging_lantern_1/IMG_9631_lapdda.jpg', 'Earlier version of lantern without round bottom piece which is an old lamp part integrated on this new lamp. Giving the old and discarded new life, it''s a joy of mine!', '1');
+
+
+
+--TEMPLATE FOR USERS ('USER_FIRSTNAME', 'USER_LASTNAME', 'USER_EMAIL', USER_PASSWORD)
+
+INSERT INTO users (user_firstName, user_lastName, user_email, user_password)
+VALUES
+('John','Doe','testEmail@test.com','Heyooo1!$@');
+
+
+

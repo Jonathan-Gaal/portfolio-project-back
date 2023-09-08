@@ -5,6 +5,7 @@ const app = express();
 const morgan = require("morgan");
 
 const artController = require("./controllers/artController");
+const userController = require("./controllers/usersController");
 
 // CONFIGURATION
 
@@ -12,7 +13,9 @@ const artController = require("./controllers/artController");
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
+// CONTROLLERS
 app.use("/gallery", artController);
+app.use("/users", userController);
 
 // ROUTES
 app.get("/", (req, res) => {

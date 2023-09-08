@@ -28,8 +28,12 @@ const getSingleArtResourceImage = async (imageIdFromParams) => {
 const createNewArtResourceImage = async (newArtResourceImage) => {
   try {
     const newArtImage = await db.one(
-      "INSERT INTO galleryArtImages (image_url, art_id) VALUES($1,$2) RETURNING *",
-      [newArtResourceImage.image_url, newArtResourceImage.art_id]
+      "INSERT INTO galleryArtImages (image_url, image_caption, art_id) VALUES($1,$2,$3) RETURNING *",
+      [
+        newArtResourceImage.image_url,
+        newArtResourceImage.image_caption,
+        newArtResourceImage.art_id,
+      ]
     );
     return newArtImage;
   } catch (err) {
@@ -52,8 +56,8 @@ const deleteSingleArtResourceImage = async (imageIdFromParams) => {
 const updateSingleArtResourceImage = async (imageIdFromParams, newImageUrl) => {
   try {
     const updatedSingleArtResource = await db.one(
-      "UPDATE galleryArtImages SET image_url=$1 WHERE image_id=$2 RETURNING *",
-      [newImageUrl.image_url, imageIdFromParams]
+      "UPDATE galleryArtImages SET image_url=$1, image_caption=$2 WHERE image_id=$3 RETURNING *",
+      [newImageUrl.image_url, newImageUrl.image_caption, imageIdFromParams]
     );
     return updatedSingleArtResource;
   } catch (err) {
