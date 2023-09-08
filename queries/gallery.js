@@ -44,7 +44,7 @@ const createArtwork = async (artwork) => {
 const deleteArtwork = async (id) => {
   try {
     const deletedArtwork = await db.one(
-      "DELETE FROM gallery WHERE id = $1 RETURNING *",
+      "DELETE FROM gallery WHERE id=$1 RETURNING *",
       id
     );
     return deletedArtwork;

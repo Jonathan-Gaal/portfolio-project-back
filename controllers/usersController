@@ -1,6 +1,11 @@
 const express = require("express");
 const users = express.Router();
-const { getAllUsers, getOneUser, createNewUser } = require("../queries/users");
+const {
+  getAllUsers,
+  getOneUser,
+  createNewUser,
+  deleteOneUser,
+} = require("../queries/users");
 
 users.get("/", async (req, res) => {
   try {
@@ -31,6 +36,14 @@ users.post("/", async (req, res) => {
   }
 });
 
-// TODO: CREATE A DELETE FUNCTION HERE
+users.delete("/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const deletedUser = await deleteOneUser(userId);
+    if (deletedUser.user_id) res.status(200).json(deletedUser);
+  } catch (err) {
+    res.status(500).json({ error: deletedUser.message });
+  }
+});
 
 module.exports = users;

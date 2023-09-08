@@ -38,13 +38,13 @@ const createNewUser = async (newUserInfo) => {
   }
 };
 
-const deleteUser = async (userId) => {
+const deleteOneUser = async (userId) => {
   try {
     const deletedUser = await db.one(
-      "DELETE FROM users WHERE user_id = 1$ RETURNING *",
+      "DELETE FROM users WHERE user_id=$1 RETURNING *",
       userId
     );
-    return deleteUser;
+    return deletedUser;
   } catch (err) {
     return { error: err };
   }
@@ -54,5 +54,5 @@ module.exports = {
   getAllUsers,
   getOneUser,
   createNewUser,
-  deleteUser,
+  deleteOneUser,
 };
