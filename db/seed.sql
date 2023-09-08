@@ -44,5 +44,9 @@ INSERT INTO users (user_firstName, user_lastName, user_email, user_password)
 VALUES
 ('John','Doe','testEmail@test.com','Heyooo1!$@');
 
+--TEMPLATE FOR USERADDRESSES ('USER_ADDRESS_USERID', 'USER_ADDRESS_STREETADDRESS', USER_ADDRESS_CITY, USER_ADDRESS_STATE, USER_ADDRESS_ZIP)
 
+INSERT INTO userAddresses (user_address_user_id, user_address_streetAddress, user_address_city, user_address_state, user_address_zip)
+VALUES
+('1','33-20 Broadway Apt. 2-B','New York','NY','10001');
 

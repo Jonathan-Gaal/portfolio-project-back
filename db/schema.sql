@@ -6,9 +6,12 @@ CREATE DATABASE jonsArt_dev;
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS galleryArtImages;
 DROP TABLE IF EXISTS gallery;
+DROP TABLE IF EXISTS userAddresses;
+-- DROP TABLE IF EXISTS userShoppingCart;
 DROP TABLE IF EXISTS users;
 
--- DROP TABLE IF EXISTS userShoppingCart;
+
+
 
 CREATE TABLE gallery (
     id SERIAL PRIMARY KEY,
@@ -41,19 +44,6 @@ CREATE TABLE galleryArtImages (
  FOREIGN KEY (art_id) REFERENCES gallery (id) ON DELETE CASCADE
 );
 
-
---TODO: remove this statement if it works without it
--- DROP TABLE IF EXISTS comments;
-
--- CREATE TABLE users (
---  user_id SERIAL PRIMARY KEY,
---  user_firstName VARCHAR(100) NOT NULL,
---  user_lastName VARCHAR(100) NOT NULL,
---  user_email VARCHAR(100) NOT NULL CONSTRAINT CHK_user_email CHECK(user_email LIKE '%_@__%.__%'),
---  user_password VARCHAR(100) CONSTRAINT CHK_user_password CHECK (user_password LIKE '%[0-9]%' AND user_password LIKE '%[A-Z]%' AND user_password LIKE '%[!@#$%^&*()-_+=.,;:~]%' AND LENGTH(user_password)>=8)
--- );
-
-
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     user_firstName VARCHAR(100) NOT NULL,
@@ -70,14 +60,14 @@ CREATE TABLE users (
     )
 );
 
-CREATE TABLE userAdresses (
+CREATE TABLE userAddresses (
  user_address_id SERIAL PRIMARY KEY,
- user_id INTEGER 
- FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
- user_adress_street VARCHAR(100)
- user_adress_city VARCHAR(60)
- user_adress_state VARCHAR(2)
- user_adress_zip VARCHAR(5)
+ user_address_user_id INTEGER NOT NULL, 
+ FOREIGN KEY (user_address_user_id) REFERENCES users (user_id) ON DELETE CASCADE,
+ user_address_streetAddress VARCHAR(100) NOT NULL,
+ user_address_city VARCHAR(60) NOT NULL,
+ user_address_state VARCHAR(2) NOT NULL,
+ user_address_zip VARCHAR(5) NOT NULL
 );
 
 -- CREATE TABLE userShoppingCart (

@@ -8,6 +8,9 @@ const {
   editAllExistingUserData,
 } = require("../queries/users");
 
+const userAddressesController = require("./userAddressesController");
+users.use("/:userId/userAddresses", userAddressesController);
+
 users.get("/", async (req, res) => {
   try {
     const allUsers = await getAllUsers();
