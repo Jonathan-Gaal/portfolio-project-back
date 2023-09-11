@@ -50,8 +50,14 @@ userAddresses.put("/:userAddressId", async (req, res) => {
   try {
     const { userAddressId } = req.params;
     const updatedAddressBody = req.body;
-    const updatedUserAddress = await updateExistingUserAddress(userAddressId);
-  } catch (err) {}
+    const updatedUserAddress = await updateExistingUserAddress(
+      updatedAddressBody,
+      userAddressId
+    );
+    res.status(200).json(updatedUserAddress);
+  } catch (err) {
+    res.status(500).json({ error: updatedUserAddress.message });
+  }
 });
 
 module.exports = userAddresses;
