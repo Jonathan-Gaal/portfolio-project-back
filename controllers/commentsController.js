@@ -11,7 +11,6 @@ const {
 //INDEX
 comments.get("/", async (req, res) => {
   const { artId } = req.params;
-
   try {
     const allComments = await getAllComments(artId);
     res.status(200).json(allComments);

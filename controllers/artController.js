@@ -63,7 +63,7 @@ gallery.put("/:id", async (req, res) => {
     const updatedArtwork = await updateArtwork(id, updatedArtworkNewData);
     res.status(200).json(updatedArtwork);
   } catch (err) {
-    res.status(404).json({ error: updateArtwork.message });
+    res.status(404).json({ error: err });
   }
 });
 
