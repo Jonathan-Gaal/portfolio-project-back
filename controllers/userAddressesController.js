@@ -46,13 +46,13 @@ userAddresses.post("/", async (req, res) => {
   }
 });
 
-userAddresses.put("/:userAddressId", async (req, res) => {
+userAddresses.put("/:addressId", async (req, res) => {
   try {
-    const { userAddressId } = req.params;
+    const { addressId } = req.params;
     const updatedAddressBody = req.body;
     const updatedUserAddress = await updateExistingUserAddress(
       updatedAddressBody,
-      userAddressId
+      addressId
     );
     res.status(200).json(updatedUserAddress);
   } catch (err) {

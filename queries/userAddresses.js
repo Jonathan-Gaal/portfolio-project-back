@@ -56,7 +56,7 @@ updateExistingUserAddress = async (
 ) => {
   try {
     const updatedUserAddress = await db.one(
-      "UPDATE userAddresses SET user_address_streetAddress=$1, user_address_city=$2, user_address_state=$3, user_address_zip=$4 WHERE user_address_user_id=$5 RETURNING*",
+      "UPDATE userAddresses SET user_address_streetAddress=$1, user_address_city=$2, user_address_state=$3, user_address_zip=$4 WHERE user_address_id=$5 RETURNING*",
       [
         updatedUserAddressBody.user_address_streetAddress,
         updatedUserAddressBody.user_address_city,
