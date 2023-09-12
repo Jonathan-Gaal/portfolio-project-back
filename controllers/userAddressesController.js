@@ -6,6 +6,7 @@ const {
   getOneUserAddressByAddressId,
   createNewUserAddress,
   updateExistingUserAddress,
+  deleteExistingUserAddress,
 } = require("../queries/userAddresses");
 
 // userAddresses.get("/", (req, res) => {
@@ -57,6 +58,16 @@ userAddresses.put("/:addressId", async (req, res) => {
     res.status(200).json(updatedUserAddress);
   } catch (err) {
     res.status(500).json({ error: updatedUserAddress.message });
+  }
+});
+
+userAddresses.delete("/:addressId", async (req, res) => {
+  try {
+    const { addressId } = req.params;
+    const deletedUserAddress = await deleteExistingUserAddress(addressId);
+    res.status(200).json(deleteExistingUserAddress);
+  } catch {
+    res.status(500).json({ error: deletedUserAddress.message });
   }
 });
 

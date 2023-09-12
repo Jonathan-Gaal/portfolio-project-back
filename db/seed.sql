@@ -38,15 +38,15 @@ VALUES
 
 
 
---TEMPLATE FOR USERS ('USER_FIRSTNAME', 'USER_LASTNAME', 'USER_EMAIL', USER_PASSWORD)
+--TEMPLATE FOR USERS ('FIRSTNAME', 'LASTNAME', 'EMAIL', PASSWORD_DIGEST)
 
-INSERT INTO users (user_firstName, user_lastName, user_email, user_password)
+INSERT INTO users (user_id, firstName, lastName, email, password_digest)
 VALUES
-('John','Doe','testEmail@test.com','Heyooo1!$@');
+('fhfjdfjsfjkhsjkdfh','John','Doe','testEmail@test.com','Heyooo1!$@');
 
---TEMPLATE FOR USERADDRESSES ('USER_ADDRESS_USERID', 'USER_ADDRESS_STREETADDRESS', USER_ADDRESS_CITY, USER_ADDRESS_STATE, USER_ADDRESS_ZIP)
+--TEMPLATE FOR USERADDRESSES ('USER_ID', 'STREETADDRESS', CITY, STATE, ZIP)
 
-INSERT INTO userAddresses (user_address_user_id, user_address_streetAddress, user_address_city, user_address_state, user_address_zip)
+INSERT INTO userAddresses (user_id, streetAddress, city, state, zip)
 VALUES
-('1','33-20 Broadway Apt. 2-B','New York','NY','10001');
+('fhfjdfjsfjkhsjkdfh','33-20 Broadway Apt. 2-B','New York','NY','10001');
 
