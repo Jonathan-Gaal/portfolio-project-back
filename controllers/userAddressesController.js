@@ -65,7 +65,7 @@ userAddresses.delete("/:addressId", async (req, res) => {
   try {
     const { addressId } = req.params;
     const deletedUserAddress = await deleteExistingUserAddress(addressId);
-    res.status(200).json(deleteExistingUserAddress);
+    res.status(200).json(deletedUserAddress);
   } catch {
     res.status(500).json({ error: deletedUserAddress.message });
   }
