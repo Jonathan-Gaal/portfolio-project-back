@@ -24,7 +24,20 @@ const getOneUserShoppingCartItemById = async (idFromParams) => {
   }
 };
 
+const createNewUserShoppingCartItem = async (newUserShoppingCartItemBody) => {
+  try {
+    const newUserShoppingCartItem = await db.one(
+      "INSERT INTO userShoppingCartItem (item_id, user_id) VALUES($1,$2) RETURNING *",
+      [newUserShoppingCartItemBody.item_id, newUserShoppingCartItemBody.user_id]
+    );
+    return newUserShoppingCartItem;
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
   getAllUserShoppingCartItems,
   getOneUserShoppingCartItemById,
+  createNewUserShoppingCartItem,
 };

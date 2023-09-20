@@ -6,6 +6,7 @@ const userShoppingCartItem = express.Router({
 const {
   getAllUserShoppingCartItems,
   getOneUserShoppingCartItemById,
+  createNewUserShoppingCartItem,
 } = require("../queries/userShoppingCartItem");
 
 // userShoppingCartItem.get("/", (req, res) => {
@@ -34,6 +35,19 @@ userShoppingCartItem.get("/:id", async (req, res) => {
     res.status(200).json(oneUserShoppingCartItemById);
   } catch (err) {
     status(500).json({ error: oneUserShoppingCartItemByItemId.message });
+  }
+});
+
+userShoppingCartItem.post("/", async (req, res) => {
+  try {
+    const newUserShoppingCartItemBody = req.body;
+    const newUserShoppingCartItem = await createNewUserShoppingCartItem(
+      newUserShoppingCartItemBody
+    );
+    console.log("NEW ITEM", newUserShoppingCartItem);
+    res.status(200).json(newUserShoppingCartItem);
+  } catch (err) {
+    res.status(500).json({ error: newUserShoppingCartItem.message });
   }
 });
 
