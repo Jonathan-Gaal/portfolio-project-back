@@ -9,7 +9,10 @@ const {
 } = require("../queries/users");
 
 const userAddressesController = require("./userAddressesController");
-users.use("/:userId/userAddresses", userAddressesController);
+users.use("/:userId/addresses", userAddressesController);
+
+const userShoppingCartItemController = require("./userShoppingCartItemController");
+users.use("/:userId/cart", userShoppingCartItemController);
 
 users.get("/", async (req, res) => {
   try {

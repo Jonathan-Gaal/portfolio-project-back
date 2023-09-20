@@ -9,10 +9,6 @@ const {
   deleteExistingUserAddress,
 } = require("../queries/userAddresses");
 
-// userAddresses.get("/", (req, res) => {
-//   res.send("hello");
-// });
-
 userAddresses.get("/", async (req, res) => {
   try {
     const { userId } = req.params;

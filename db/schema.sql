@@ -5,11 +5,11 @@ CREATE DATABASE jonsArt_dev;
 
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS galleryArtImages;
+DROP TABLE IF EXISTS userShoppingCartItem;
 DROP TABLE IF EXISTS gallery;
 DROP TABLE IF EXISTS userAddresses;
--- DROP TABLE IF EXISTS userShoppingCart;
-DROP TABLE IF EXISTS users;
 
+DROP TABLE IF EXISTS users;
 
 
 
@@ -19,20 +19,21 @@ CREATE TABLE gallery (
     materials TEXT,
     description TEXT,
     category VARCHAR(100),
-    post_date VARCHAR(10),
-    image TEXT,
+    creation_date TIMESTAMP NOT NULL,
+    post_date TIMESTAMP NOT NULL,
     diameter TEXT,
     width TEXT,
     height TEXT,
-    depth TEXT
+    depth TEXT,
     -- price DOUBLE(2)
+    sold BOOLEAN DEFAULT false
 );
 
 CREATE TABLE comments (
  id SERIAL PRIMARY KEY,
  commenter VARCHAR(100),
  comment TEXT,
- post_date VARCHAR(10),
+ post_date TIMESTAMP NOT NULL,
  art_id INTEGER REFERENCES gallery (id)  ON DELETE CASCADE
 --  user_id INTEGER REFERENCES users (user_id)
 );
@@ -54,13 +55,7 @@ email VARCHAR(100) NOT NULL CONSTRAINT CHK_email CHECK(
 email LIKE '%_@__%.__%'
 ),
 password_digest TEXT NOT NULL 
-    -- password VARCHAR(100) NOT NULL CONSTRAINT CHK_password CHECK (
-    --     LENGTH(user_password) >= 8
-    --     AND user_password ~ '[A-Z]'
-    --     AND user_password ~ '[a-z]'
-    --     AND user_password ~ '[0-9]'
-    --     AND user_password ~ '[!@#$%^&*()-_+=.,;:~]'
-    -- )
+
 );
 
 CREATE TABLE userAddresses (
@@ -73,13 +68,22 @@ CREATE TABLE userAddresses (
  zip VARCHAR(5) NOT NULL
 );
 
--- CREATE TABLE userShoppingCartItem (
---  id SERIAL PRIMARY KEY,
---  item_id INTEGER REFERENCES gallery (id),
---  FOREIGN KEY (item_id) REFERENCES gallery (id) ON DELETE CASCADE
---  user_id VARCHAR(100) NOT NULL,
---  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
--- );
+CREATE TABLE userShoppingCartItem (
+ id SERIAL PRIMARY KEY,
+ item_id INTEGER REFERENCES gallery (id),
+ FOREIGN KEY (item_id) REFERENCES gallery (id) ON DELETE CASCADE,
+ quantity INT NOT NULL DEFAULT 1,
+ user_id VARCHAR(100) NOT NULL,
+ FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
+);
+
+
+
+
+-- WORRY ABOUT THIS LATER!
+
+
+
 
 
 -- CREATE TABLE orders (
@@ -90,8 +94,8 @@ CREATE TABLE userAddresses (
 -- );
 
 -- orderitems 
---serial
---order id
+-- serial
+-- order id
 -- item_id INTEGER REFERENCES gallery (id),
 --  FOREIGN KEY (item_id) REFERENCES gallery (id) ON DELETE CASCADE
 --  --PRICE AT TIME OF PURCHASE
@@ -103,5 +107,14 @@ CREATE TABLE userAddresses (
 
 
 
+--***********************
+
+    -- password VARCHAR(100) NOT NULL CONSTRAINT CHK_password CHECK (
+    --     LENGTH(user_password) >= 8
+    --     AND user_password ~ '[A-Z]'
+    --     AND user_password ~ '[a-z]'
+    --     AND user_password ~ '[0-9]'
+    --     AND user_password ~ '[!@#$%^&*()-_+=.,;:~]'
+    -- )
 
 
