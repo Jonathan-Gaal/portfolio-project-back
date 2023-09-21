@@ -7,6 +7,8 @@ const {
   getAllUserShoppingCartItems,
   getOneUserShoppingCartItemById,
   createNewUserShoppingCartItem,
+  updateExistingUserShoppingCartItem,
+  deleteExistingUserShoppingCartItem,
 } = require("../queries/userShoppingCartItem");
 
 // userShoppingCartItem.get("/", (req, res) => {
@@ -48,6 +50,30 @@ userShoppingCartItem.post("/", async (req, res) => {
     res.status(200).json(newUserShoppingCartItem);
   } catch (err) {
     res.status(500).json({ error: newUserShoppingCartItem.message });
+  }
+});
+
+userShoppingCartItem.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedShoppingCartItemBody = req.body;
+    const updatedUserShoppingCartItem =
+      await updateExistingUserShoppingCartItem(updatedShoppingCartItemBody, id);
+    console.log("UPDATED", updatedUserShoppingCartItem);
+    res.status(200).json(updatedUserShoppingCartItem);
+  } catch (err) {
+    res.status(500).json({ error: updatedUserShoppingCartItem.message });
+  }
+});
+
+userShoppingCartItem.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedUserShoppingCartItem =
+      await deleteExistingUserShoppingCartItem(id);
+    res.status(200).json(deletedUserShoppingCartItem);
+  } catch {
+    res.status(500).json({ error: deletedUserShoppingCartItem.message });
   }
 });
 

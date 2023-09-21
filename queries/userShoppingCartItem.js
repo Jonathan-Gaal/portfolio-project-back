@@ -36,8 +36,43 @@ const createNewUserShoppingCartItem = async (newUserShoppingCartItemBody) => {
   }
 };
 
+const updateExistingUserShoppingCartItem = async (
+  updatedUserShoppingCartItemBody,
+  userShoppingCartItemIdFromParams
+) => {
+  try {
+    const updatedUserShoppingCartItem = await db.one(
+      "UPDATE userShoppingCartItem SET item_id=$1, user_id=$2 WHERE id=$3 RETURNING *",
+      [
+        updatedUserShoppingCartItemBody.item_id,
+        updatedUserShoppingCartItemBody.user_id,
+        userShoppingCartItemIdFromParams,
+      ]
+    );
+    return updatedUserShoppingCartItem;
+  } catch (err) {
+    return err;
+  }
+};
+
+const deleteExistingUserShoppingCartItem = async (
+  userShoppingCartItemIdFromParams
+) => {
+  try {
+    const deletedShoppingCartItem = await db.one(
+      "DELETE FROM userShoppingCartItem WHERE id=$1 RETURNING *",
+      userShoppingCartItemIdFromParams
+    );
+    return deletedShoppingCartItem;
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
   getAllUserShoppingCartItems,
   getOneUserShoppingCartItemById,
   createNewUserShoppingCartItem,
+  updateExistingUserShoppingCartItem,
+  deleteExistingUserShoppingCartItem,
 };
