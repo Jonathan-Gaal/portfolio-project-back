@@ -66,9 +66,9 @@ VALUES
 
 -- TEMPLATE FOR USERS ('FIRSTNAME', 'LASTNAME', 'EMAIL', PASSWORD_DIGEST)
 
-INSERT INTO users (user_id, firstName, lastName, email, password_digest)
+INSERT INTO users (user_id, firstName, lastName, email)
 VALUES
-('fhfjdfjsfjkhsjkdfh','John','Doe','testEmail@test.com','Heyooo1!$@');
+('fhfjdfjsfjkhsjkdfh','John','Doe','testEmail@test.com');
 
 -- TEMPLATE FOR USERADDRESSES ('USER_ID', 'STREETADDRESS', CITY, STATE, ZIP)
 

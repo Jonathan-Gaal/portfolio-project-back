@@ -22,31 +22,27 @@ const getOneUser = async (userId) => {
 };
 
 const createNewUser = async (newUserInfo) => {
-  try {
-    const newUser = await db.one(
-      "INSERT INTO users (user_firstName, user_lastName, user_email, user_password) VALUES($1, $2, $3, $4) RETURNING *",
-      [
-        newUserInfo.user_firstName,
-        newUserInfo.user_lastName,
-        newUserInfo.user_email,
-        newUserInfo.user_password,
-      ]
-    );
-    return newUser;
-  } catch (err) {
-    return err;
-  }
+  const newUser = await db.one(
+    "INSERT INTO users (user_id, firstName, lastName, email) VALUES($1, $2, $3, $4) RETURNING *",
+    [
+      newUserInfo.user_id,
+      newUserInfo.firstName,
+      newUserInfo.lastName,
+      newUserInfo.email,
+    ]
+  );
+  return newUser;
 };
 
 const editAllExistingUserData = async (userId, updatedUserNewData) => {
   try {
     const updatedUser = await db.one(
-      "UPDATE users SET user_firstName=$1, user_lastName=$2, user_email=$3, user_password=$4 WHERE user_id=$5 RETURNING *",
+      "UPDATE users SET user_firstName=$1, user_lastName=$2, user_email=$3, WHERE user_id=$4 RETURNING *",
       [
         updatedUserNewData.user_firstName,
         updatedUserNewData.user_lastName,
         updatedUserNewData.user_email,
-        updatedUserNewData.user_password,
+
         userId,
       ]
     );

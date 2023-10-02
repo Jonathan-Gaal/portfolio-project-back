@@ -53,9 +53,7 @@ firstName VARCHAR(100) NOT NULL,
 lastName VARCHAR(100) NOT NULL,
 email VARCHAR(100) NOT NULL CONSTRAINT CHK_email CHECK(
 email LIKE '%_@__%.__%'
-),
-password_digest TEXT NOT NULL 
-
+)
 );
 
 CREATE TABLE userAddresses (

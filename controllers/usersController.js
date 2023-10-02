@@ -37,9 +37,9 @@ users.post("/", async (req, res) => {
   try {
     const newUserData = req.body;
     const newUser = await createNewUser(newUserData);
-    res.status(200).json(newUserData);
+    res.status(200).json(newUser);
   } catch (err) {
-    res.status(400).json({ error: newUser.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
