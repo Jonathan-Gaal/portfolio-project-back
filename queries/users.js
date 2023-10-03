@@ -1,24 +1,16 @@
 const db = require("../db/dbConfig");
 
 const getAllUsers = async () => {
-  try {
-    const allUsers = await db.any("SELECT * FROM users");
-    return allUsers;
-  } catch (err) {
-    return err;
-  }
+  const allUsers = await db.any("SELECT * FROM users");
+  return allUsers;
 };
 
 const getOneUser = async (userId) => {
-  try {
-    const singleUser = await db.one(
-      "SELECT * FROM users WHERE user_id=$1",
-      userId
-    );
-    return singleUser;
-  } catch (err) {
-    return err;
-  }
+  const singleUser = await db.one(
+    "SELECT * FROM users WHERE user_id=$1",
+    userId
+  );
+  return singleUser;
 };
 
 const createNewUser = async (newUserInfo) => {
@@ -35,33 +27,25 @@ const createNewUser = async (newUserInfo) => {
 };
 
 const editAllExistingUserData = async (userId, updatedUserNewData) => {
-  try {
-    const updatedUser = await db.one(
-      "UPDATE users SET user_firstName=$1, user_lastName=$2, user_email=$3, WHERE user_id=$4 RETURNING *",
-      [
-        updatedUserNewData.user_firstName,
-        updatedUserNewData.user_lastName,
-        updatedUserNewData.user_email,
+  const updatedUser = await db.one(
+    "UPDATE users SET user_firstName=$1, user_lastName=$2, user_email=$3, WHERE user_id=$4 RETURNING *",
+    [
+      updatedUserNewData.user_firstName,
+      updatedUserNewData.user_lastName,
+      updatedUserNewData.user_email,
 
-        userId,
-      ]
-    );
-    return updatedUser;
-  } catch (err) {
-    return err;
-  }
+      userId,
+    ]
+  );
+  return updatedUser;
 };
 
 const deleteOneUser = async (userId) => {
-  try {
-    const deletedUser = await db.one(
-      "DELETE FROM users WHERE user_id=$1 RETURNING *",
-      userId
-    );
-    return deletedUser;
-  } catch (err) {
-    return { error: err };
-  }
+  const deletedUser = await db.one(
+    "DELETE FROM users WHERE user_id=$1 RETURNING *",
+    userId
+  );
+  return deletedUser;
 };
 
 module.exports = {
