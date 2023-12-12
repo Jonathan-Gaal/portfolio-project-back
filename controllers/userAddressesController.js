@@ -17,7 +17,7 @@ userAddresses.get("/", async (req, res) => {
     );
     res.status(200).json(allAddressesForOneUser);
   } catch (err) {
-    res.status(500).json({ error: allAddressesForOneUser.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -29,7 +29,7 @@ userAddresses.get("/:userAddressId", async (req, res) => {
     );
     res.status(200).json(oneUserAddressByAddressId);
   } catch (err) {
-    res.status(500).json({ error: oneUserAddressByAddressId.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -39,7 +39,7 @@ userAddresses.post("/", async (req, res) => {
     const newUserAddress = await createNewUserAddress(newUserAddressBody);
     res.status(200).json(newUserAddress);
   } catch (err) {
-    res.status(500).json({ error: newAddress.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -53,7 +53,7 @@ userAddresses.put("/:addressId", async (req, res) => {
     );
     res.status(200).json(updatedUserAddress);
   } catch (err) {
-    res.status(500).json({ error: updatedUserAddress.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -62,8 +62,8 @@ userAddresses.delete("/:addressId", async (req, res) => {
     const { addressId } = req.params;
     const deletedUserAddress = await deleteExistingUserAddress(addressId);
     res.status(200).json(deletedUserAddress);
-  } catch {
-    res.status(500).json({ error: deletedUserAddress.message });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 

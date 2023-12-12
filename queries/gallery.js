@@ -6,7 +6,10 @@ const getAllArtwork = async () => {
 };
 
 const getOneArtwork = async (id) => {
-  const oneArtwork = await db.one("SELECT * FROM gallery WHERE id=$1", id);
+  const oneArtwork = await db.oneOrNone(
+    "SELECT * FROM gallery WHERE id=$1",
+    id
+  );
   return oneArtwork;
 };
 
@@ -30,7 +33,7 @@ const createArtwork = async (artwork) => {
 };
 
 const deleteArtwork = async (id) => {
-  const deletedArtwork = await db.one(
+  const deletedArtwork = await db.oneOrNone(
     "DELETE FROM gallery WHERE id=$1 RETURNING *",
     id
   );
@@ -38,15 +41,16 @@ const deleteArtwork = async (id) => {
 };
 
 const updateArtwork = async (id, artwork) => {
-  const updatedArtwork = await db.one(
-    "UPDATE gallery SET title=$1, materials=$2, description=$3, category=$4, post_date=$5, image=$6, diameter=$7, width=$8, height=$9, depth=$10 WHERE id=$11 RETURNING *",
+  const updatedArtwork = await db.oneOrNone(
+    // "UPDATE gallery SET title=$1, materials=$2, description=$3, category=$4, post_date=$5, image=$6, diameter=$7, width=$8, height=$9, depth=$10 WHERE id=$11 RETURNING *",
+    "UPDATE gallery SET title=$1, materials=$2, description=$3, category=$4, post_date=$5, diameter=$6, width=$7, height=$8, depth=$9 WHERE id=$10 RETURNING *",
     [
       artwork.title,
       artwork.materials,
       artwork.description,
       artwork.category,
       artwork.post_date,
-      artwork.image,
+      // artwork.image,
       artwork.diameter,
       artwork.width,
       artwork.height,

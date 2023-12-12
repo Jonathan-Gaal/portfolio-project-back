@@ -23,7 +23,7 @@ userShoppingCartItem.get("/", async (req, res) => {
     );
     res.status(200).json(allShoppingCartItemsForOneUser);
   } catch (err) {
-    res.status(500).json({ err: allShoppingCartItemsForOneUser.message });
+    res.status(500).json({ err: err.message });
   }
 });
 
@@ -36,7 +36,7 @@ userShoppingCartItem.get("/:id", async (req, res) => {
     );
     res.status(200).json(oneUserShoppingCartItemById);
   } catch (err) {
-    status(500).json({ error: oneUserShoppingCartItemByItemId.message });
+    status(500).json({ error: err.message });
   }
 });
 
@@ -49,7 +49,7 @@ userShoppingCartItem.post("/", async (req, res) => {
     console.log("NEW ITEM", newUserShoppingCartItem);
     res.status(200).json(newUserShoppingCartItem);
   } catch (err) {
-    res.status(500).json({ error: newUserShoppingCartItem.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -62,7 +62,7 @@ userShoppingCartItem.put("/:id", async (req, res) => {
     console.log("UPDATED", updatedUserShoppingCartItem);
     res.status(200).json(updatedUserShoppingCartItem);
   } catch (err) {
-    res.status(500).json({ error: updatedUserShoppingCartItem.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -72,8 +72,8 @@ userShoppingCartItem.delete("/:id", async (req, res) => {
     const deletedUserShoppingCartItem =
       await deleteExistingUserShoppingCartItem(id);
     res.status(200).json(deletedUserShoppingCartItem);
-  } catch {
-    res.status(500).json({ error: deletedUserShoppingCartItem.message });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 

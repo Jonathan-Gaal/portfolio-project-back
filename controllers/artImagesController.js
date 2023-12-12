@@ -21,7 +21,7 @@ artImages.get("/", async (req, res) => {
     const allArtImages = await getAllArtResourceImages(artId);
     res.status(200).json(allArtImages);
   } catch (err) {
-    res.status(500).json({ error: allArtImages.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -32,7 +32,7 @@ artImages.post("/", async (req, res) => {
     const newArtImage = await createNewArtResourceImage(newArtImageBody);
     res.status(200).json(newArtImage);
   } catch (err) {
-    res.status(500).json({ error: newArtImage.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -43,7 +43,7 @@ artImages.get("/:imageId", async (req, res) => {
   if (!artImage.message) {
     res.status(200).json(artImage);
   } else {
-    res.status(400).json({ error: artImage.message });
+    res.status(400).json({ error: err.message });
   }
 });
 
@@ -59,7 +59,7 @@ artImages.put("/:imageId", async (req, res) => {
     console.log("updated image from put", updatedSingleArtImage);
     res.status(200).json(updatedSingleArtImage);
   } catch (err) {
-    res.status(400).json({ error: artImage.message });
+    res.status(400).json({ error: err.message });
   }
 });
 
@@ -72,7 +72,7 @@ artImages.delete("/:imageId", async (req, res) => {
       res.status(200).json(deletedSingleArtImage);
     }
   } catch (err) {
-    res.status(404).json({ error: deletedSingleArtImage.message });
+    res.status(404).json({ error: err.message });
   }
 });
 

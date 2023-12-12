@@ -15,7 +15,7 @@ comments.get("/", async (req, res) => {
     const allComments = await getAllComments(artId);
     res.status(200).json(allComments);
   } catch (err) {
-    res.status(500).json({ error: err });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -26,7 +26,7 @@ comments.get("/:id", async (req, res) => {
   if (!comment.message) {
     res.status(200).json(comment);
   } else {
-    res.status(500).json({ error: comment.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -37,7 +37,7 @@ comments.post("/", async (req, res) => {
     const comment = await createComment(newCommentBody);
     res.status(200).json(comment);
   } catch (err) {
-    res.status(500).json({ error: comment.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -48,7 +48,7 @@ comments.put("/:id", async (req, res) => {
     const updatedComment = await updateComment(id, req.body);
     res.status(200).json(updatedComment);
   } catch (error) {
-    res.status(400).json({ error: updatedComment.message });
+    res.status(400).json({ error: err.message });
   }
 });
 
@@ -61,7 +61,7 @@ comments.delete("/:id", async (req, res) => {
       res.status(200).json(deletedComment);
     }
   } catch (err) {
-    res.status(404).json({ error: deletedComment.message });
+    res.status(404).json({ error: err.message });
   }
 });
 

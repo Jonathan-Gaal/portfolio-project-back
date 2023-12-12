@@ -20,18 +20,22 @@ gallery.get("/", async (req, res) => {
   if (allArtwork[0]) {
     res.status(200).json(allArtwork);
   } else {
-    res.status(500).json({ error: allArtwork.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
 // GET ONE ARTWORK
 gallery.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const artwork = await getOneArtwork(id);
-  if (!artwork.message) {
-    res.json(artwork);
-  } else {
-    res.status(404).json({ error: artwork.message });
+  try {
+    const { id } = req.params;
+    const artwork = await getOneArtwork(id);
+    if (artwork) {
+      res.status(200).json(artwork);
+    } else {
+      res.status(404).json({ error: `Resource with id: ${id} not found` });
+    }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -40,7 +44,7 @@ gallery.post("/", async (req, res) => {
     const artwork = await createArtwork(req.body);
     res.json(artwork);
   } catch (err) {
-    res.status(400).json({ error: artwork.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -48,11 +52,15 @@ gallery.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deletedArtwork = await deleteArtwork(id);
-    if (deletedArtwork.id) {
+    if (deletedArtwork) {
       res.status(200).json(deletedArtwork);
+    } else {
+      res.status(404).json({
+        error: `Cannot delete resource with id: ${id} - resource not found`,
+      });
     }
   } catch (err) {
-    res.status(404).json({ error: deleteArtwork.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -61,9 +69,16 @@ gallery.put("/:id", async (req, res) => {
     const { id } = req.params;
     const updatedArtworkNewData = req.body;
     const updatedArtwork = await updateArtwork(id, updatedArtworkNewData);
-    res.status(200).json(updatedArtwork);
+
+    if (updatedArtwork) {
+      res.status(200).json(updatedArtwork);
+    } else {
+      res.status(404).json({
+        error: `Cannot update resource with id: ${id} - resource not found`,
+      });
+    }
   } catch (err) {
-    res.status(404).json({ error: err });
+    res.status(500).json({ error: err.message });
   }
 });
 

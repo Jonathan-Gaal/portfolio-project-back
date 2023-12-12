@@ -19,17 +19,18 @@ users.get("/", async (req, res) => {
     const allUsers = await getAllUsers();
     res.status(200).json(allUsers);
   } catch (err) {
-    res.status(500).json({ error: allUsers.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
 users.get("/:userId", async (req, res) => {
+  const { userId } = req.params;
+  console.log("user id", userId);
   try {
-    const { userId } = req.params;
     const oneUser = await getOneUser(userId);
     res.json(oneUser);
   } catch (err) {
-    res.status(500).json({ error: oneUser.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -53,7 +54,7 @@ users.put("/:userId", async (req, res) => {
     );
     res.status(200).json(editedUser);
   } catch (err) {
-    res.status(500).json({ error: editedUser.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -61,9 +62,10 @@ users.delete("/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
     const deletedUser = await deleteOneUser(userId);
+    console.log("DELETED USER FROM CONTROLLER", deletedUser);
     if (deletedUser.user_id) res.status(200).json(deletedUser);
   } catch (err) {
-    res.status(500).json({ error: deletedUser.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
