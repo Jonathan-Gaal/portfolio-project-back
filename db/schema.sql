@@ -25,7 +25,7 @@ CREATE TABLE gallery (
     width TEXT,
     height TEXT,
     depth TEXT,
-    -- price DOUBLE(2)
+    price DECIMAL(10,2) NOT NULL,
     sold BOOLEAN DEFAULT false
 );
 
@@ -72,7 +72,8 @@ CREATE TABLE userShoppingCartItem (
  FOREIGN KEY (item_id) REFERENCES gallery (id) ON DELETE CASCADE,
  quantity INT NOT NULL DEFAULT 1,
  user_id VARCHAR(100) NOT NULL,
- FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE
+ FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE,
+ item_price DECIMAL (10,2) NOT NULL
 );
 
 

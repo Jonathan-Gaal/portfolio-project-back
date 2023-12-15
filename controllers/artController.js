@@ -20,7 +20,7 @@ gallery.get("/", async (req, res) => {
   if (allArtwork[0]) {
     res.status(200).json(allArtwork);
   } else {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: allArtwork.message });
   }
 });
 
