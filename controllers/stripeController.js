@@ -3,7 +3,17 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   try {
-    console.log(req.body);
+    /*
+        type of events
+        charge.succeeded
+        payment_intent.succeeded
+        payment_intent.created
+        checkout.session.completed
+    */
+
+    const typeOfEvent = req.body.type;
+    console.log(typeOfEvent);
+
     res.end();
   } catch (err) {
     console.error(err);

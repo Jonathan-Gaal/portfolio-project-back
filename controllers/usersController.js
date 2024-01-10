@@ -25,7 +25,7 @@ users.get("/", async (req, res) => {
 
 users.get("/:userId", async (req, res) => {
   const { userId } = req.params;
-  console.log("user id", userId);
+
   try {
     const oneUser = await getOneUser(userId);
     res.json(oneUser);

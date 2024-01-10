@@ -56,7 +56,7 @@ artImages.put("/:imageId", async (req, res) => {
       imageId,
       newImageUrl
     );
-    console.log("updated image from put", updatedSingleArtImage);
+
     res.status(200).json(updatedSingleArtImage);
   } catch (err) {
     res.status(400).json({ error: err.message });

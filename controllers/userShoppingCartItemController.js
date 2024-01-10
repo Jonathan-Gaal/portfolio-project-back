@@ -9,11 +9,8 @@ const {
   createNewUserShoppingCartItem,
   updateExistingUserShoppingCartItem,
   deleteExistingUserShoppingCartItem,
+  clearUserShoppingCart,
 } = require("../queries/userShoppingCartItem");
-
-// userShoppingCartItem.get("/", (req, res) => {
-//   res.send("hello");
-// });
 
 userShoppingCartItem.get("/", async (req, res) => {
   try {
@@ -30,7 +27,6 @@ userShoppingCartItem.get("/", async (req, res) => {
 userShoppingCartItem.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("ID", id);
     const oneUserShoppingCartItemById = await getOneUserShoppingCartItemById(
       id
     );
@@ -46,7 +42,6 @@ userShoppingCartItem.post("/", async (req, res) => {
     const newUserShoppingCartItem = await createNewUserShoppingCartItem(
       newUserShoppingCartItemBody
     );
-    console.log("NEW ITEM", newUserShoppingCartItem);
     res.status(200).json(newUserShoppingCartItem);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -59,7 +54,6 @@ userShoppingCartItem.put("/:id", async (req, res) => {
     const updatedShoppingCartItemBody = req.body;
     const updatedUserShoppingCartItem =
       await updateExistingUserShoppingCartItem(updatedShoppingCartItemBody, id);
-    console.log("UPDATED", updatedUserShoppingCartItem);
     res.status(200).json(updatedUserShoppingCartItem);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -72,6 +66,18 @@ userShoppingCartItem.delete("/:id", async (req, res) => {
     const deletedUserShoppingCartItem =
       await deleteExistingUserShoppingCartItem(id);
     res.status(200).json(deletedUserShoppingCartItem);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+userShoppingCartItem.delete("/", async (req, res) => {
+  const userIdFromReqBody = req.body.userUID;
+  console.log("BODY", req.body);
+
+  try {
+    const emptyCart = await clearUserShoppingCart(userIdFromReqBody);
+    res.status(200).json(emptyCart);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

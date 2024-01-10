@@ -6,6 +6,7 @@ const morgan = require("morgan");
 
 const artController = require("./controllers/artController");
 const userController = require("./controllers/usersController");
+// TODO: can use this webhook to send a payment confirmation email from stripe to user or myself
 const stripeController = require("./controllers/stripeController");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
 

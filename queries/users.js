@@ -45,7 +45,7 @@ const deleteOneUser = async (userId) => {
     "DELETE FROM users WHERE user_id=$1 RETURNING *",
     userId
   );
-  console.log("DELETED USER", deletedUser);
+
   return deletedUser;
 };
 

@@ -54,10 +54,19 @@ const deleteExistingUserShoppingCartItem = async (
   return deletedShoppingCartItem;
 };
 
+const clearUserShoppingCart = async (userIdFromReqBody) => {
+  const emptyCart = await db.one(
+    "DELETE FROM userShoppingCartItem WHERE user_id=$1 RETURNING *",
+    userIdFromReqBody
+  );
+  return emptyCart;
+};
+
 module.exports = {
   getAllUserShoppingCartItems,
   getOneUserShoppingCartItemById,
   createNewUserShoppingCartItem,
   updateExistingUserShoppingCartItem,
   deleteExistingUserShoppingCartItem,
+  clearUserShoppingCart,
 };
