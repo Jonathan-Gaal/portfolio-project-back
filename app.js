@@ -16,7 +16,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
 app.use(
   cors({
     origin: [
-      `${process.env.REACT_APP_URL}`,
       `${process.env.REACT_APP_API_URL}`,
       '"https://checkout.stripe.com"',
     ],
