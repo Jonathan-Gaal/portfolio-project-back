@@ -34,7 +34,6 @@ app.get("*", (req, res) => {
 
 app.post("/create-checkout-session", async (req, res) => {
   const requestBodyItems = req.body.items;
-  req.setHeader("Access-Control-Allow-Origin", "*");
 
   let lineItems = [];
 
