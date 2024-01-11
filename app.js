@@ -13,7 +13,15 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
 // CONFIGURATION
 
 // MIDDLEWARE
-app.use(cors({}));
+app.use(
+  cors({
+    origin: [
+      `${process.env.REACT_APP_URL}`,
+      `${process.env.REACT_APP_API_URL}`,
+      '"https://checkout.stripe.com"',
+    ],
+  })
+);
 app.use(express.static("public"));
 app.use(express.json());
 app.use(morgan("tiny"));
