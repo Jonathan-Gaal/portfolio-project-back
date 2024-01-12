@@ -13,7 +13,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST_KEY);
 // CONFIGURATION
 
 // MIDDLEWARE
-app.use(cors({}));
+app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
 app.use(morgan("tiny"));
