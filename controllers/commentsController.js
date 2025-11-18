@@ -22,10 +22,12 @@ comments.get("/", async (req, res) => {
 //SHOW
 comments.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const comment = await getComment(id);
-  if (!comment.message) {
-    res.status(200).json(comment);
-  } else {
+  try {
+    const comment = await getComment(id);
+    if (!comment.message) {
+      res.status(200).json(comment);
+    }
+  } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
