@@ -29,6 +29,7 @@ users.get("/:userId", async (req, res) => {
   try {
     const oneUser = await getOneUser(userId);
     res.json(oneUser);
+    console.log(oneUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
