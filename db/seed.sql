@@ -43,7 +43,7 @@ make_timestamp(2022, 10, 12, 0, 0, 0), make_timestamp(2023, 2, 17, 0, 0, 0), '13
 
 INSERT INTO comments (art_id, commenter, comment, post_date )
 VALUES
-(1, 'Jon', 'This piece rox beyond belief!',make_timestamp(2023, 2, 8, 0, 0, 0));
+('1', 'Jon', 'This piece rox beyond belief!',make_timestamp(2023, 2, 8, 0, 0, 0));
 
 --TEMPLATE FOR GALLERYARTIMAGES ('IMAGE_URL', 'IMAGE_CAPTION', 'ART_ID')
 
@@ -98,63 +98,6 @@ VALUES(1, 'Ei4jUqff6NPe1f6BR5pYbfawLZD3', 120.00), (5, 'Ei4jUqff6NPe1f6BR5pYbfaw
 
 
 
-/*CHAT GPT EDITED WITH ON CONFLIC DO NOTHING STATEMENTS ALLOWING THE SEED TO BE REINPUTED WITHOUT CREATING DUPLICATES*/
 
-
--- ------------------------------
--- GALLERY
--- ------------------------------
--- INSERT INTO gallery (title, materials, description, category, creation_date, post_date, diameter, width, height, depth, price)
--- VALUES
--- ('Moroccan Hanging Lantern', 'nickel plated trays, cotton strands from dog-toys (for tassels), paracord, wooden frame from discarded japanese lantern, yarn, plastic crystals from discarded candelabrum, assorted lamp parts, premade tassels, brass bell', 'I made this piece from 8 nickel plated trays I got for $1 per at dollar tree. I used an awl to punch out the patterns and screwed the trays to a wooden frame I liberated from a box shaped japanese shoji lantern style lamp that I found discarded in the trash one fine day. The large tassels hanging on each of the 4 corners are made from untwisted dog toys, again from dollar tree, and hang on a string made from red patterned paracord. Another great feature is that the power cord is completely covered in yarn masking the fact that this is an electric lamp. I love the touch that there is a long pull-chain that has a small brass bell on the end that rings whenever you pull on or off.', 'Lighting', make_timestamp(2021, 9, 12, 0, 0, 0), make_timestamp(2023, 2, 12, 0, 0, 0), 'N/A', '11.5 in.', '30 in.', '11.5 in.', 120.00)
--- ON CONFLICT (title) DO NOTHING;
-
--- -- repeat similar INSERTS for the other gallery items using ON CONFLICT (title) DO NOTHING
-
--- -- ------------------------------
--- -- COMMENTS
--- -- ------------------------------
--- INSERT INTO comments (art_id, commenter, comment, post_date)
--- VALUES
--- (1, 'Jon', 'This piece rox beyond belief!', make_timestamp(2023, 2, 8, 0, 0, 0))
--- ON CONFLICT DO NOTHING;
-
--- -- ------------------------------
--- -- GALLERY ART IMAGES
--- -- ------------------------------
--- INSERT INTO galleryArtImages (image_url, image_caption, art_id)
--- VALUES
--- ('https://res.cloudinary.com/dkedfonvh/image/upload/v1676571233/frontend-portfolio-project-images/artworks/moroccan_hanging_lantern_1/D4B43263-D1F8-4D0D-92A0-1DC085436BED_oi1px7.jpg', 'Closeup of lantern.', 1)
--- ON CONFLICT DO NOTHING;
-
--- -- repeat for the other images
-
--- -- ------------------------------
--- -- USERS
--- -- ------------------------------
--- INSERT INTO users (user_id, firstName, lastName, email)
--- VALUES
--- ('Ei4jUqff6NPe1f6BR5pYbfawLZD3', 'John', 'Doe', 'jonnydoe2@fake.com')
--- ON CONFLICT (user_id) DO NOTHING;
-
--- -- ------------------------------
--- -- USER ADDRESSES
--- -- ------------------------------
--- INSERT INTO userAddresses (user_id, streetAddress, city, state, zip)
--- VALUES
--- ('Ei4jUqff6NPe1f6BR5pYbfawLZD3', '33-20 Broadway Apt. 2-B', 'New York', 'NY', '10001')
--- ON CONFLICT DO NOTHING;
-
--- -- ------------------------------
--- -- USER SHOPPING CART ITEMS
--- -- ------------------------------
--- INSERT INTO userShoppingCartItem (item_id, user_id, item_price)
--- VALUES
--- (1, 'Ei4jUqff6NPe1f6BR5pYbfawLZD3', 120.00),
--- (5, 'Ei4jUqff6NPe1f6BR5pYbfawLZD3', 150.00),
--- (2, 'Ei4jUqff6NPe1f6BR5pYbfawLZD3', 110.00),
--- (8, 'Ei4jUqff6NPe1f6BR5pYbfawLZD3', 200.00),
--- (7, 'Ei4jUqff6NPe1f6BR5pYbfawLZD3', 200.00)
--- ON CONFLICT DO NOTHING;
 
 
