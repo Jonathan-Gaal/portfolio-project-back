@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS jonsArt_dev;
 CREATE DATABASE jonsArt_dev;
 
 \c jonsArt_dev
+-- for use in render
+-- \c jonsArt_dev 
 
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS galleryArtImages;
