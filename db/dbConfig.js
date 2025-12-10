@@ -8,6 +8,7 @@ let cn = {};
 if (process.env.NODE_ENV === "production") {
   cn = {
     connectionString: databaseUrl,
+    ssl: { rejectUnauthorized: false },
   };
 } else {
   cn = {
